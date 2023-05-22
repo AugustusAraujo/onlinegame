@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sockets</title>
+    <style>
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #fff;
+        }
+
+        html,
+        body {
+            background: #122C34;
+        }
+
+        #board {
+            border: solid .5px black;
+            margin: 10px auto;
+            display: flex;
+            background-color: #fff;
+        }
+
+        h1 {
+            font-size: 1.5em;
+            text-align: center;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Multiplayer test</h1>
+    <canvas id="board" height="300" width="585"></canvas>
+    <h2>Connected Players</h2>
+    <ul>
+        <li>You: <span id="session"></span></li>
+    </ul>
+
+    <script type="module" src="index.js"></script>
+</body>
+
+</html>
