@@ -23,7 +23,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("receivePlayerData", (data) => {
-    let { id, position } = JSON.parse(data);
+    let { id, position, color } = JSON.parse(data);
 
     players.map((i) => {
       if (i.id == id) {
@@ -33,8 +33,9 @@ io.on("connection", (socket) => {
     });
 
     let player = players.filter((i) => i.id == id);
+    player[0].color = color;
 
-    io.emit("newPlayersLocations", JSON.stringify(player));
+    io.emit("newPlayersLocations", JSON.stringify(player[0]));
   });
 });
 
