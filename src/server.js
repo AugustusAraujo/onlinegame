@@ -13,6 +13,7 @@ let players = [];
 
 io.on("connection", (socket) => {
   console.log("New player connected:", socket.id);
+
   players.push({
     id: socket.id,
     position: {
@@ -20,16 +21,20 @@ io.on("connection", (socket) => {
       y: 0,
     },
   });
+
   socket.on("receivePlayerData", (data) => {
-    console.log(players);
     let { id, position } = JSON.parse(data);
-    io.emit(
-      "newPlayersLocations",
-      JSON.stringify({
-        id,
-        position,
-      })
-    );
+
+    players.map((i) => {
+      if (i.id == id) {
+        i.lastPosition = i.position;
+        i.position = position;
+      }
+    });
+
+    let player = players.filter((i) => i.id == id);
+
+    io.emit("newPlayersLocations", JSON.stringify(player));
   });
 });
 
