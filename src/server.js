@@ -22,6 +22,8 @@ io.on("connection", (socket) => {
     },
   });
 
+  io.emit("players", JSON.stringify(players));
+
   socket.on("receivePlayerData", (data) => {
     let { id, position, color } = JSON.parse(data);
 
